@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  backup_server:
+    build: .
+    container_name: backup_server
+    volumes:
+      - ./data:/data
+      - ./backup:/backup
+    entrypoint: ["/bin/bash", "-c", "apt update && apt install -y cron rsync && cron -f"]
+    restart: always
